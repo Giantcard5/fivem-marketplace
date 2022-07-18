@@ -1,0 +1,19 @@
+import React from 'react';
+
+import { 
+    Container
+} from './styles';
+
+import { 
+    TNav
+} from 'types/Nav';
+
+const Nav: React.FC<TNav> = (props) => {
+    return (
+        <Container onClick={props.onClick}>
+            {props.children}
+        </Container>
+    )
+}
+
+export default Nav;

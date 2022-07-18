@@ -1,0 +1,63 @@
+[
+
+    {
+        "name": "Weapon",
+        "type": "Weapon",
+        "price": 100000
+    },
+    {
+        "name": "Weapon",
+        "type": "Weapon",
+        "price": 100000
+    },
+    {
+        "name": "Weapon",
+        "type": "Weapon",
+        "price": 200000
+    },
+    {
+        "name": "Weapone",
+        "type": "Weapon",
+        "price": 200000
+    },
+    {
+        "name": "Ammo",
+        "type": "Ammo",
+        "price": 100000
+    },
+    {
+        "name": "Ammo",
+        "type": "Ammo",
+        "price": 100000
+    },
+    {
+        "name": "Ammo",
+        "type": "Ammo",
+        "price": 200000
+    },
+    {
+        "name": "Ammo",
+        "type": "Ammo",
+        "price": 200000
+    },
+    {
+        "name": "Other",
+        "type": "Other",
+        "price": 100000
+    },
+    {
+        "name": "Other",
+        "type": "Other",
+        "price": 100000
+    },
+    {
+        "name": "Other",
+        "type": "Other",
+        "price": 200000
+    },
+    {
+        "name": "Other",
+        "type": "Other",
+        "price": 200000
+    }
+]
