@@ -1,4 +1,6 @@
-import { MouseEventHandler } from 'react';
+import { 
+    MouseEventHandler 
+} from 'react';
 
 export type TNav = {
     children: React.ReactNode;

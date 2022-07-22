@@ -58,6 +58,17 @@ export const Container = styled('span', {
 
                 filter: 'drop-shadow(0vmax 0vmax .6vmax rgb(13, 232, 132, 0.4))',
             },
+            items: {
+                fontSize: '.6vmax',
+                fontWeight: '600',
+
+                textAlign: 'center',
+                textTransform: 'uppercase',
+
+                color: 'var(--white)',
+
+                filter: 'drop-shadow(0vmax 0vmax .4vmax rgba(235, 235, 235, 0.2))',
+            },
             button: {
                 fontSize: '.6vmax',
                 fontWeight: '600',
@@ -78,6 +89,15 @@ export const Container = styled('span', {
                 cursor: 'pointer',
 
                 filter: 'drop-shadow(0vmax 0vmax .4vmax rgba(235, 235, 235, 0.2))',
+            },
+            send: {
+                fontSize: '.8vmax',
+                fontWeight: '600',
+
+                textAlign: 'center',
+                textTransform: 'uppercase',
+
+                color: 'var(--white)',
             },
         },
     },

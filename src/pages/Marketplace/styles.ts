@@ -8,7 +8,7 @@ export const Container = styled('main',{
     width: '100vw',
     height: '100vh',
 
-    background: 'linear-gradient(90deg, rgba(10,10,20,1) 0%, rgba(10,10,20,0.9780287114845938) 35%, rgba(10,10,20,0.9023984593837535) 80%)',
+    background: 'var(--background)',
 });
 
 export const Content = styled('main', {
@@ -35,7 +35,7 @@ export const Section = styled('section', {
 
 export const Grid = styled('div', {
     display: 'grid',
-    gridTemplateColumns: 'repeat(3, 6.4vmax)',
+    gridTemplateColumns: 'repeat(3, 6.35vmax)',
     
     rowGap: '1vmax',
 
@@ -61,15 +61,6 @@ export const Navigator = styled('div', {
     margin: '0vmax 0vmax .4vmax 0vmax',
 })
 
-export const Separator = styled('div', {
-    margin: '.4vmax 0vmax .0vmax 0vmax',
-
-    width: '100%',
-    height: '.2vmax',
-
-    background: 'linear-gradient(90deg, rgba(52,151,116,1) 0%, rgba(13,232,132,0.30575980392156865) 69%)',
-})
-
 export const Block = styled('div', {
     display: 'flex',
     justifyContent: 'space-between',
@@ -78,6 +69,8 @@ export const Block = styled('div', {
 export const Article = styled('article', {
     display: 'flex',
     alignItems: 'center',
+
+    height: '1.38vmax',
 })
 
 export const Image = styled('img', {

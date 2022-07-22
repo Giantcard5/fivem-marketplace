@@ -7,12 +7,18 @@ import {
 
 import Marketplace from 'pages/Marketplace';
 
+import { 
+    VisibilityProvider 
+} from 'providers/VisibilityProvider';
+
 const root = ReactDOM.createRoot(document.getElementById('root')!);
 
 root.render(
     <React.StrictMode>
-        {GlobalStyles()}
-        
-        <Marketplace/>
+        <VisibilityProvider>
+            {GlobalStyles()}
+            
+            <Marketplace/>
+        </VisibilityProvider>
     </React.StrictMode>
 );
