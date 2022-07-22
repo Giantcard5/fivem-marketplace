@@ -16,9 +16,10 @@ import {
 import Nav from 'components/Nav';
 import Text from 'components/Text';
 import Item from 'components/Item';
-import Modal from 'components/Modal';
 import Search from 'components/Search';
 import Separator from 'components/Separator';
+
+import Inventory from 'pages/Inventory';
 
 import PlusSVG from 'assets/icons/plus.svg';
 
@@ -31,25 +32,106 @@ import {
 } from 'utils/debugData';
 
 import { 
+    useNuiEvent 
+} from 'hooks/useNuiEvent';
+
+import { 
     TItems,
     TItem
 } from 'types/Item';
-
-import { 
-    useNuiEvent 
-} from 'hooks/useNuiEvent';
 
 debugData([
     {
         action: 'setVisible',
         data: true,
+    },
+
+]);
+
+debugData<TItems>([
+    {
+        action: 'getMarketplaceData',
+        data: [
+            {
+                "id": 1,
+                "name": "Weapon",
+                "type": "Weapon",
+                "price": 100000
+            },
+            {
+                "id": 2,
+                "name": "Weapon",
+                "type": "Weapon",
+                "price": 100000
+            },
+            {
+                "id": 3,
+                "name": "Weapon",
+                "type": "Weapon",
+                "price": 200000
+            },
+            {
+                "id": 4,
+                "name": "Weapon",
+                "type": "Weapon",
+                "price": 200000
+            },
+            {
+                "id": 5,
+                "name": "Ammo",
+                "type": "Ammo",
+                "price": 100000
+            },
+            {
+                "id": 6,
+                "name": "Ammo",
+                "type": "Ammo",
+                "price": 100000
+            },
+            {
+                "id": 7,
+                "name": "Ammo",
+                "type": "Ammo",
+                "price": 200000
+            },
+            {
+                "id": 8,
+                "name": "Ammo",
+                "type": "Ammo",
+                "price": 200000
+            },
+            {
+                "id": 9,
+                "name": "Other",
+                "type": "Other",
+                "price": 100000
+            },
+            {
+                "id": 10,
+                "name": "Other",
+                "type": "Other",
+                "price": 100000
+            },
+            {
+                "id": 11,
+                "name": "Other",
+                "type": "Other",
+                "price": 200000
+            },
+            {
+                "id": 12,
+                "name": "Other",
+                "type": "Other",
+                "price": 200000
+            }
+        ]
     }
 ]);
 
 const Marketplace: React.FC = () => {
     const [searchValue, setSearchValue] = useState<string>('');
     const [filterValue, setFilterValue] = useState<string>('');
-    const [modalValue, setModalValue] = useState(false);
+    const [inventoryStatus, setInventoryStatus] = useState(false);
     const [inventoryData, setInventoryData] = useState<TItems>([]);
     const [marketplaceData, setMarketplaceData] = useState<TItems>();
 
@@ -61,25 +143,98 @@ const Marketplace: React.FC = () => {
         };
     };
 
-    const handleModalValue = (value: boolean) => {
-        setModalValue(value);
+    const handleInventoryStatus = (value: boolean) => {
+        setInventoryStatus(value);
 
-        fetchNui<TItems>('getInventoryData').then(value => {
-            setInventoryData(value)
-        });
+        // fetchNui<TItems>('getInventoryData').then(value => {
+            setInventoryData([
+                {
+                    "id": 1,
+                    "name": "Weapon",
+                    "type": "Weapon",
+                    "price": 100000
+                },
+                {
+                    "id": 2,
+                    "name": "Weapon",
+                    "type": "Weapon",
+                    "price": 100000
+                },
+                {
+                    "id": 3,
+                    "name": "Weapon",
+                    "type": "Weapon",
+                    "price": 200000
+                },
+                {
+                    "id": 4,
+                    "name": "Weapon",
+                    "type": "Weapon",
+                    "price": 200000
+                },
+                {
+                    "id": 5,
+                    "name": "Ammo",
+                    "type": "Ammo",
+                    "price": 100000
+                },
+                {
+                    "id": 6,
+                    "name": "Ammo",
+                    "type": "Ammo",
+                    "price": 100000
+                },
+                {
+                    "id": 7,
+                    "name": "Ammo",
+                    "type": "Ammo",
+                    "price": 200000
+                },
+                {
+                    "id": 8,
+                    "name": "Ammo",
+                    "type": "Ammo",
+                    "price": 200000
+                },
+                {
+                    "id": 9,
+                    "name": "Other",
+                    "type": "Other",
+                    "price": 100000
+                },
+                {
+                    "id": 10,
+                    "name": "Other",
+                    "type": "Other",
+                    "price": 100000
+                },
+                {
+                    "id": 11,
+                    "name": "Other",
+                    "type": "Other",
+                    "price": 200000
+                },
+                {
+                    "id": 12,
+                    "name": "Other",
+                    "type": "Other",
+                    "price": 200000
+                }
+            ])
+        // });
     };
 
     useEffect(() => {
         const keyHandler = (event: KeyboardEvent) => {
             if (['Escape'].includes(event.code)) {
-                setModalValue(false);
+                setInventoryStatus(false);
             };
         };
 
         window.addEventListener('keydown', keyHandler);
 
         return () => window.removeEventListener('keydown', keyHandler);
-    }, [modalValue])
+    }, [inventoryStatus])
 
     const handleMarketplaceValue = (value: TItem) => {
         fetchNui<TItem>('handleMarketplaceValue', value);
@@ -120,7 +275,7 @@ const Marketplace: React.FC = () => {
                                 </Nav>
                             </Article>
 
-                            <Button onClick={() => {handleModalValue(!modalValue)}}>
+                            <Button onClick={() => {handleInventoryStatus(!inventoryStatus)}}>
                                 <Image src={PlusSVG} alt='Search'/>
                             </Button>
                         </Block>
@@ -166,7 +321,7 @@ const Marketplace: React.FC = () => {
                 </Section>
             </Content>
                 
-            {modalValue && <Modal data={inventoryData}/>}
+            {inventoryStatus && <Inventory data={inventoryData}/>}
         </Container>
     )
 }

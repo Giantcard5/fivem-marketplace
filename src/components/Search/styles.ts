@@ -8,7 +8,7 @@ export const Container = styled('div', {
 
     margin: '0vmax 0vmax .8vmax 0vmax',
 
-    boxShadow: 'inset 0vmax 0vmax 1vmax rgba(213, 213, 213, 0.05)',
+    boxShadow: '0vmax 0vmax 1vmax rgba(213, 213, 213, 0.05), inset 0vmax 0vmax 1vmax rgba(213, 213, 213, 0.05)',
 
     background: 'rgb(255, 255, 255, 0.05)',
     borderRadius: '.1vmax',

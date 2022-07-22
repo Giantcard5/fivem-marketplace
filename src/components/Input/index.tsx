@@ -2,7 +2,8 @@ import React from 'react';
 
 import { 
     Container,
-    Content
+    Content,
+    Text
 } from './styles';
 
 import { 
@@ -12,6 +13,7 @@ import {
 const Input: React.FC<TSearch> = ({...rest}) => {
     return (
         <Container>
+            <Text>$</Text>
             <Content {...rest}/>
         </Container>
     )

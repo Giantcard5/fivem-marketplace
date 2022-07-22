@@ -2,6 +2,8 @@ import {
     globalCss 
 } from '@stitches/react';
 
+import './input.css';
+
 export const GlobalStyles = globalCss({
     '*': {
         margin: '0',
