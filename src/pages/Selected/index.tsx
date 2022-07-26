@@ -30,8 +30,6 @@ const Selected: React.FC<TItem> = (props) => {
     const handleItemValue = (value: TItem) => {
         if (value.price !== 0) {
             fetchNui<TItem>('handleInventoryValue', value);
-
-            fetchNui('hideFrame');
         }
     };
 

@@ -28,10 +28,6 @@ import {
 } from 'utils/fetchNui';
 
 import { 
-    debugData 
-} from 'utils/debugData';
-
-import { 
     useNuiEvent 
 } from 'hooks/useNuiEvent';
 
@@ -39,94 +35,6 @@ import {
     TItems,
     TItem
 } from 'types/Item';
-
-debugData([
-    {
-        action: 'setVisible',
-        data: true,
-    },
-
-]);
-
-debugData<TItems>([
-    {
-        action: 'getMarketplaceData',
-        data: [
-            {
-                "id": 1,
-                "name": "Weapon",
-                "type": "Weapon",
-                "price": 100000
-            },
-            {
-                "id": 2,
-                "name": "Weapon",
-                "type": "Weapon",
-                "price": 100000
-            },
-            {
-                "id": 3,
-                "name": "Weapon",
-                "type": "Weapon",
-                "price": 200000
-            },
-            {
-                "id": 4,
-                "name": "Weapon",
-                "type": "Weapon",
-                "price": 200000
-            },
-            {
-                "id": 5,
-                "name": "Ammo",
-                "type": "Ammo",
-                "price": 100000
-            },
-            {
-                "id": 6,
-                "name": "Ammo",
-                "type": "Ammo",
-                "price": 100000
-            },
-            {
-                "id": 7,
-                "name": "Ammo",
-                "type": "Ammo",
-                "price": 200000
-            },
-            {
-                "id": 8,
-                "name": "Ammo",
-                "type": "Ammo",
-                "price": 200000
-            },
-            {
-                "id": 9,
-                "name": "Other",
-                "type": "Other",
-                "price": 100000
-            },
-            {
-                "id": 10,
-                "name": "Other",
-                "type": "Other",
-                "price": 100000
-            },
-            {
-                "id": 11,
-                "name": "Other",
-                "type": "Other",
-                "price": 200000
-            },
-            {
-                "id": 12,
-                "name": "Other",
-                "type": "Other",
-                "price": 200000
-            }
-        ]
-    }
-]);
 
 const Marketplace: React.FC = () => {
     const [searchValue, setSearchValue] = useState<string>('');
@@ -146,82 +54,9 @@ const Marketplace: React.FC = () => {
     const handleInventoryStatus = (value: boolean) => {
         setInventoryStatus(value);
 
-        // fetchNui<TItems>('getInventoryData').then(value => {
-            setInventoryData([
-                {
-                    "id": 1,
-                    "name": "Weapon",
-                    "type": "Weapon",
-                    "price": 100000
-                },
-                {
-                    "id": 2,
-                    "name": "Weapon",
-                    "type": "Weapon",
-                    "price": 100000
-                },
-                {
-                    "id": 3,
-                    "name": "Weapon",
-                    "type": "Weapon",
-                    "price": 200000
-                },
-                {
-                    "id": 4,
-                    "name": "Weapon",
-                    "type": "Weapon",
-                    "price": 200000
-                },
-                {
-                    "id": 5,
-                    "name": "Ammo",
-                    "type": "Ammo",
-                    "price": 100000
-                },
-                {
-                    "id": 6,
-                    "name": "Ammo",
-                    "type": "Ammo",
-                    "price": 100000
-                },
-                {
-                    "id": 7,
-                    "name": "Ammo",
-                    "type": "Ammo",
-                    "price": 200000
-                },
-                {
-                    "id": 8,
-                    "name": "Ammo",
-                    "type": "Ammo",
-                    "price": 200000
-                },
-                {
-                    "id": 9,
-                    "name": "Other",
-                    "type": "Other",
-                    "price": 100000
-                },
-                {
-                    "id": 10,
-                    "name": "Other",
-                    "type": "Other",
-                    "price": 100000
-                },
-                {
-                    "id": 11,
-                    "name": "Other",
-                    "type": "Other",
-                    "price": 200000
-                },
-                {
-                    "id": 12,
-                    "name": "Other",
-                    "type": "Other",
-                    "price": 200000
-                }
-            ])
-        // });
+        fetchNui<TItems>('getInventoryData').then(value => {
+            setInventoryData(value)
+        });
     };
 
     useEffect(() => {
