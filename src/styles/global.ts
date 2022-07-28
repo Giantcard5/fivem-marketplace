@@ -2,8 +2,6 @@ import {
     globalCss 
 } from '@stitches/react';
 
-import './input.css';
-
 export const GlobalStyles = globalCss({
     '*': {
         margin: '0',
@@ -41,6 +39,13 @@ export const GlobalStyles = globalCss({
         '&:focus': {
             outline: 'none',
         }
+    },
+
+    'input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer-spin-button': {
+        WebkitAppearance: 'none',
+        appearance: 'none',
+        
+        margin: '0',
     },
     
     ':root': {

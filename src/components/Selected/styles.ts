@@ -11,27 +11,6 @@ export const Container = styled('div', {
     margin: '4.85vmax 0vmax 0vmax 1vmax',
 });
 
-export const Button = styled('button', {
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-
-    width: '100%',
-    height: '12%',
-
-    backgroundColor: 'var(--green-darker)',
-
-    borderRadius: '0.1vmax',
-
-    boxShadow: '0vmax 0vmax 1vmax rgb(13, 232, 132, 0.1)',
-
-    transition: 'all .2s',
-
-    '&:hover': {
-        boxShadow: '0vmax 0vmax 1vmax rgb(13, 232, 132, 0.3)',
-    },
-})
-
 export const Image = styled('div', {
     width: '100%',
     height: '75%',
@@ -55,13 +34,13 @@ export const Block = styled('div', {
     alignItems: 'center',
     justifyContent: 'center',
 
-    margin: '.1vmax 0vmax',
-
     width: '100%',
     height: '1.15vmax',
+
+    margin: '.1vmax 0vmax',
 
     background: 'rgba(213,213,213,0.01)',
 
     border: '.1vmax solid rgba(213,213,213,0.02)',
     borderRadius: '0.1vmax',
-})
+});

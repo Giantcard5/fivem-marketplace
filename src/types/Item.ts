@@ -1,6 +1,6 @@
-export type TItems = TItem[]
+export type ItemsProps = ItemProps[]
 
-export type TItem = {
+export type ItemProps = {
     id: number,
     name: string,
     type: string,

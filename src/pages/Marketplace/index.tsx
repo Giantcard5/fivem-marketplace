@@ -6,20 +6,20 @@ import {
     Content,
     Section,
     Article,
-    Button,
-    Header,
-    Image,
-    Block,
-    Grid
+    Block
 } from './styles';
 
-import Nav from 'components/Nav';
-import Text from 'components/Text';
-import Item from 'components/Item';
-import Search from 'components/Search';
-import Separator from 'components/Separator';
+import Nav from 'components/UI/Nav';
+import Text from 'components/UI/Text';
+import Item from 'components/UI/Item';
+import Grid from 'components/UI/Grid';
+import Image from 'components/UI/Image';
+import Search from 'components/UI/Search';
+import Button from 'components/UI/Button';
+import Header from 'components/UI/Header';
+import Separator from 'components/UI/Separator';
 
-import Inventory from 'pages/Inventory';
+import Inventory from 'components/Inventory';
 
 import PlusSVG from 'assets/icons/plus.svg';
 
@@ -32,16 +32,16 @@ import {
 } from 'hooks/useNuiEvent';
 
 import { 
-    TItems,
-    TItem
+    ItemsProps,
+    ItemProps
 } from 'types/Item';
 
 const Marketplace: React.FC = () => {
     const [searchValue, setSearchValue] = useState<string>('');
     const [filterValue, setFilterValue] = useState<string>('');
     const [inventoryStatus, setInventoryStatus] = useState(false);
-    const [inventoryData, setInventoryData] = useState<TItems>([]);
-    const [marketplaceData, setMarketplaceData] = useState<TItems>();
+    const [inventoryData, setInventoryData] = useState<ItemsProps>([]);
+    const [marketplaceData, setMarketplaceData] = useState<ItemsProps>();
 
     const handleFilterValue = (value: string) => {
         if (filterValue !== value) {
@@ -54,9 +54,82 @@ const Marketplace: React.FC = () => {
     const handleInventoryStatus = (value: boolean) => {
         setInventoryStatus(value);
 
-        fetchNui<TItems>('getInventoryData').then(value => {
-            setInventoryData(value)
-        });
+        // fetchNui<ItemsProps>('getInventoryData').then(value => {
+            setInventoryData([
+                {
+                    "id": 1,
+                    "name": "Weapon",
+                    "type": "Weapon",
+                    "price": 100000
+                },
+                {
+                    "id": 2,
+                    "name": "Weapon",
+                    "type": "Weapon",
+                    "price": 100000
+                },
+                {
+                    "id": 3,
+                    "name": "Weapon",
+                    "type": "Weapon",
+                    "price": 200000
+                },
+                {
+                    "id": 4,
+                    "name": "Weapon",
+                    "type": "Weapon",
+                    "price": 200000
+                },
+                {
+                    "id": 5,
+                    "name": "Ammo",
+                    "type": "Ammo",
+                    "price": 100000
+                },
+                {
+                    "id": 6,
+                    "name": "Ammo",
+                    "type": "Ammo",
+                    "price": 100000
+                },
+                {
+                    "id": 7,
+                    "name": "Ammo",
+                    "type": "Ammo",
+                    "price": 200000
+                },
+                {
+                    "id": 8,
+                    "name": "Ammo",
+                    "type": "Ammo",
+                    "price": 200000
+                },
+                {
+                    "id": 9,
+                    "name": "Other",
+                    "type": "Other",
+                    "price": 100000
+                },
+                {
+                    "id": 10,
+                    "name": "Other",
+                    "type": "Other",
+                    "price": 100000
+                },
+                {
+                    "id": 11,
+                    "name": "Other",
+                    "type": "Other",
+                    "price": 200000
+                },
+                {
+                    "id": 12,
+                    "name": "Other",
+                    "type": "Other",
+                    "price": 200000
+                }
+            ])
+        // });
     };
 
     useEffect(() => {
@@ -71,11 +144,11 @@ const Marketplace: React.FC = () => {
         return () => window.removeEventListener('keydown', keyHandler);
     }, [inventoryStatus])
 
-    const handleMarketplaceValue = (value: TItem) => {
-        fetchNui<TItem>('handleMarketplaceValue', value);
+    const handleMarketplaceValue = (value: ItemProps) => {
+        fetchNui<ItemProps>('handleMarketplaceValue', value);
     }
 
-    useNuiEvent<TItems>('getMarketplaceData', setMarketplaceData);
+    useNuiEvent<ItemsProps>('getMarketplaceData', setMarketplaceData);
 
     return (
         <Container>
@@ -110,8 +183,12 @@ const Marketplace: React.FC = () => {
                                 </Nav>
                             </Article>
 
-                            <Button onClick={() => {handleInventoryStatus(!inventoryStatus)}}>
-                                <Image src={PlusSVG} alt='Search'/>
+                            <Button type='image' onClick={() => {handleInventoryStatus(!inventoryStatus)}}>
+                                <Image 
+                                    type='plus' 
+                                    src={PlusSVG} 
+                                    alt='Search'
+                                />
                             </Button>
                         </Block>
 

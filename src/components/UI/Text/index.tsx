@@ -5,10 +5,10 @@ import {
 } from './styles';
 
 import { 
-    TText 
+    TextProps 
 } from 'types/Text';
 
-const Text: React.FC<TText> = (props) => {
+const Text: React.FC<TextProps> = (props) => {
     return (
         <Container type={props.type}>
             {props.children}

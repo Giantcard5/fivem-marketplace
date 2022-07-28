@@ -2,23 +2,23 @@ import React, { useState } from 'react';
 
 import { 
     Container,
-    Button,
     Image,
     Block
 } from './styles';
 
-import Text from 'components/Text';
-import Input from 'components/Input';
-
-import { 
-    TItem 
-} from 'types/Item';
+import Text from 'components/UI/Text';
+import Input from 'components/UI/Input';
+import Button from 'components/UI/Button';
 
 import { 
     fetchNui 
 } from 'utils/fetchNui';
 
-const Selected: React.FC<TItem> = (props) => {
+import { 
+    ItemProps 
+} from 'types/Item';
+
+const Selected: React.FC<ItemProps> = (props) => {
     const [itemPrice, setItemPrice] = useState<number>(0);
 
     const preventMinus = (event: any) => {
@@ -27,9 +27,9 @@ const Selected: React.FC<TItem> = (props) => {
         };
     };
     
-    const handleItemValue = (value: TItem) => {
+    const handleItemValue = (value: ItemProps) => {
         if (value.price !== 0) {
-            fetchNui<TItem>('handleInventoryValue', value);
+            fetchNui<ItemProps>('handleInventoryValue', value);
         }
     };
 
@@ -51,6 +51,7 @@ const Selected: React.FC<TItem> = (props) => {
             </Block>
 
             <Button 
+                type='item'
                 onClick={() => {
                     handleItemValue({
                         id: props.id,

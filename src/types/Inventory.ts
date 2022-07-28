@@ -1,5 +1,5 @@
-import { TItems } from 'types/Item';
+import { ItemsProps } from 'types/Item';
 
-export type TInventory = {
-    data: TItems;
+export type InventoryProps = {
+    data: ItemsProps;
 }

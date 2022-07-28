@@ -5,10 +5,10 @@ import {
 } from './styles';
 
 import { 
-    TNav
+    NavProps
 } from 'types/Nav';
 
-const Nav: React.FC<TNav> = (props) => {
+const Nav: React.FC<NavProps> = (props) => {
     return (
         <Container onClick={props.onClick}>
             {props.children}

@@ -5,33 +5,33 @@ import {
     Navigator,
     Section,
     Content,
-    Header,
     Block,
-    Grid
 } from './styles';
 
-import Nav from 'components/Nav';
-import Text from 'components/Text';
-import Item from 'components/Item';
-import Search from 'components/Search';
-import Separator from 'components/Separator';
+import Nav from 'components/UI/Nav';
+import Text from 'components/UI/Text';
+import Grid from 'components/UI/Grid';
+import Item from 'components/UI/Item';
+import Search from 'components/UI/Search';
+import Header from 'components/UI/Header';
+import Separator from 'components/UI/Separator';
 
-import Selected from 'pages/Selected';
+import Selected from 'components/Selected';
 
 import { 
-    TItem
+    ItemProps
 } from 'types/Item';
 
 import { 
-    TInventory 
+    InventoryProps 
 } from 'types/Inventory';
 
-const Inventory: React.FC<TInventory> = (props) => {
+const Inventory: React.FC<InventoryProps> = (props) => {
     const [searchValue, setSearchValue] = useState<string>('');
     const [typeValue, setTypeValue] = useState<string>('');
     const [itemStatus, setItemStatus] = useState<boolean>(false);
 
-    const [itemData, setItemData] = useState<TItem>();
+    const [itemData, setItemData] = useState<ItemProps>();
 
     const handleTypeValue = (value: string) => {
         if (typeValue !== value) {

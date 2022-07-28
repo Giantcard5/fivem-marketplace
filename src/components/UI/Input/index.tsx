@@ -7,10 +7,10 @@ import {
 } from './styles';
 
 import { 
-    TSearch
+    SearchProps
 } from 'types/Search';
 
-const Input: React.FC<TSearch> = ({...rest}) => {
+const Input: React.FC<SearchProps> = ({...rest}) => {
     return (
         <Container>
             <Text>$</Text>

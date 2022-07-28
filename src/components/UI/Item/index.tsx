@@ -2,26 +2,26 @@ import React from 'react';
 
 import { 
     Container,
-    Button,
     Image,
     Block
 } from './styles';
 
-import Text from 'components/Text';
+import Text from 'components/UI/Text';
+import Button from 'components/UI/Button';
 
 import { 
-    TItem 
+    formatter 
+} from 'utils/formatter';
+
+import { 
+    ItemProps 
 } from 'types/Item';
 
 import { 
     TButton 
 } from 'types/Button';
 
-import { 
-    formatter 
-} from 'utils/formatter';
-
-const Item: React.FC<TItem & TButton> = (props) => {
+const Item: React.FC<ItemProps & TButton> = (props) => {
     return (
         <Container key={props.id}>
             <Image>
@@ -32,7 +32,7 @@ const Item: React.FC<TItem & TButton> = (props) => {
                 <Text type='item'>{props.name}</Text>
             </Block>
 
-            <Button onClick={props.onClick}>
+            <Button type='item' onClick={props.onClick}>
                 <Text type='button'>{props.text}</Text>
             </Button>
         </Container>

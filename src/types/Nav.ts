@@ -1,6 +1,4 @@
-import { MouseEventHandler } from 'react';
-
-export type TNav = {
+export type NavProps = {
     children: React.ReactNode;
-    onClick?: MouseEventHandler | undefined;
+    onClick?: () => {} | void;
 }
