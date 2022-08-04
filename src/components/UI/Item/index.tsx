@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 
 import { 
     Container,
@@ -17,11 +17,7 @@ import {
     ItemProps 
 } from 'types/Item';
 
-import { 
-    TButton 
-} from 'types/Button';
-
-const Item: React.FC<ItemProps & TButton> = (props) => {
+const Item: React.FC<ItemProps> = (props) => {
     return (
         <Container key={props.id}>
             <Image>
@@ -39,4 +35,4 @@ const Item: React.FC<ItemProps & TButton> = (props) => {
     )
 }
 
-export default Item;
+export default memo(Item);

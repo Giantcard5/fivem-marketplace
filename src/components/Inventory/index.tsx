@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useContext, Context } from 'react';
 
 import { 
     Container,
@@ -19,6 +19,10 @@ import Separator from 'components/UI/Separator';
 import Selected from 'components/Selected';
 
 import { 
+    ItemContext, ItemProviderProps 
+} from 'providers/ItemProvider';
+
+import { 
     ItemProps
 } from 'types/Item';
 
@@ -27,19 +31,16 @@ import {
 } from 'types/Inventory';
 
 const Inventory: React.FC<InventoryProps> = (props) => {
-    const [searchValue, setSearchValue] = useState<string>('');
-    const [typeValue, setTypeValue] = useState<string>('');
-    const [itemStatus, setItemStatus] = useState<boolean>(false);
+    const [search, setSearch] = useState<string>('');
+    const [filter, setFilter] = useState<string>('');
+    const [item, setItem] = useState<ItemProps>();
 
-    const [itemData, setItemData] = useState<ItemProps>();
+    const { 
+        visible: itemVisible, 
+        setVisible: setItemVisible 
+    } = useContext(ItemContext as Context<ItemProviderProps>);
 
-    const handleTypeValue = (value: string) => {
-        if (typeValue !== value) {
-            setTypeValue(value);
-        } else {
-            setTypeValue('');
-        };
-    };
+    const handleFilter = (value: string) => value !== filter && setFilter(value);
 
     return (
         <Container>
@@ -49,23 +50,24 @@ const Inventory: React.FC<InventoryProps> = (props) => {
                         type='text' 
                         placeholder='Search by name' 
                         onChange={(event) => {
-                            setSearchValue(event.target.value);
+                            setSearch(event.target.value);
                         }}
+                        value={search}
                     />
                 </Header>
 
                 <Section>
                     <Navigator>
                         <Block>
-                            <Nav onClick={() => {handleTypeValue('Weapon')}}>
+                            <Nav onClick={() => {handleFilter('Weapon')}}>
                                 <Text type='navigator'>Weapons</Text>
                             </Nav>
 
-                            <Nav onClick={() => {handleTypeValue('Ammo')}}>
+                            <Nav onClick={() => {handleFilter('Ammo')}}>
                                 <Text type='navigator'>Ammo</Text>
                             </Nav>
 
-                            <Nav onClick={() => {handleTypeValue('Other')}}>
+                            <Nav onClick={() => {handleFilter('Other')}}>
                                 <Text type='navigator'>Others</Text>
                             </Nav>
                         </Block>
@@ -76,16 +78,16 @@ const Inventory: React.FC<InventoryProps> = (props) => {
                     {props.data ? (
                         <Grid>
                             {props.data.filter((value) => {
-                                if (searchValue === '') {
-                                    if (typeValue === '') {
+                                if (search === '') {
+                                    if (filter === '') {
                                         return value;
-                                    } else if (typeValue === value.type) {
+                                    } else if (filter === value.type) {
                                         return value;
                                     };
-                                } else if (value.name.toLowerCase().includes(searchValue.toLowerCase())) {
-                                    if (typeValue === '') {
+                                } else if (value.name.toLowerCase().includes(search.toLowerCase())) {
+                                    if (filter === '') {
                                         return value;
-                                    } else if (typeValue === value.type) {
+                                    } else if (filter === value.type) {
                                         return value;
                                     };
                                 };
@@ -99,26 +101,26 @@ const Inventory: React.FC<InventoryProps> = (props) => {
                                     type={value.type} 
                                     text='Select'
                                     onClick={() => {
-                                        if (itemStatus === true) {
-                                            if (itemData?.id === value.id) {
-                                                setItemStatus(false);
+                                        if (itemVisible === true) {
+                                            if (item?.id === value.id) {
+                                                setItemVisible(false);
     
-                                                setItemData({
+                                                setItem({
                                                     id: value.id,
                                                     name: value.name,
                                                     type: value.type
                                                 })
                                             } else {
-                                                setItemData({
+                                                setItem({
                                                     id: value.id,
                                                     name: value.name,
                                                     type: value.type
                                                 })
                                             }
                                         } else {
-                                            setItemStatus(true);
+                                            setItemVisible(true);
 
-                                            setItemData({
+                                            setItem({
                                                 id: value.id,
                                                 name: value.name,
                                                 type: value.type
@@ -134,11 +136,13 @@ const Inventory: React.FC<InventoryProps> = (props) => {
                 </Section>
             </Content>
 
-            {itemStatus && itemData && <Selected
-                id={itemData.id} 
-                name={itemData.name} 
-                type={itemData.type} 
-            />}
+            {itemVisible && item && 
+                <Selected
+                    id={item.id} 
+                    name={item.name} 
+                    type={item.type} 
+                />
+            }
         </Container>
     )
 }

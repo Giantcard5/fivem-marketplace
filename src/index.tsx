@@ -12,6 +12,14 @@ import {
 } from 'providers/VisibilityProvider';
 
 import { 
+    InventoryProvider 
+} from 'providers/InventoryProvider';
+
+import { 
+    ItemProvider 
+} from 'providers/ItemProvider';
+
+import { 
     debugData 
 } from 'utils/debugData';
 
@@ -27,7 +35,7 @@ debugData([
 
 debugData([
     {
-        action: 'getMarketplaceData',
+        action: 'getMarketplace',
         data: [
             {
                 "id": 1,
@@ -105,12 +113,16 @@ debugData([
     }
 ]);
 
-root.render(
+root.render(      
     <React.StrictMode>
         <VisibilityProvider>
-            {GlobalStyles()}
-            
-            <Marketplace/>
+            <InventoryProvider>
+                <ItemProvider>
+                    {GlobalStyles()}
+                    
+                    <Marketplace/>
+                </ItemProvider>
+            </InventoryProvider>
         </VisibilityProvider>
     </React.StrictMode>
 );

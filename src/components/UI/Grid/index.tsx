@@ -5,10 +5,10 @@ import {
 } from './styles';
 
 import { 
-    GridProps 
-} from 'types/Grid';
+    ChildrenProps 
+} from 'types/Children';
 
-const Grid: React.FC<GridProps> = (props)=> {
+const Grid: React.FC<ChildrenProps> = (props)=> {
     return (
         <Container>
             {props.children}

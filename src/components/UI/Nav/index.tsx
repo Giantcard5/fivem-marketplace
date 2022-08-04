@@ -8,7 +8,11 @@ import {
     NavProps
 } from 'types/Nav';
 
-const Nav: React.FC<NavProps> = (props) => {
+import { 
+    ChildrenProps 
+} from 'types/Children';
+
+const Nav: React.FC<NavProps & ChildrenProps> = (props) => {
     return (
         <Container onClick={props.onClick}>
             {props.children}

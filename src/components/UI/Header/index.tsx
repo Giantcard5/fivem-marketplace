@@ -5,10 +5,10 @@ import {
 } from './styles';
 
 import { 
-    HeaderProps 
-} from 'types/Header';
+    ChildrenProps 
+} from 'types/Children';
 
-const Header: React.FC<HeaderProps> = (props)=> {
+const Header: React.FC<ChildrenProps> = (props)=> {
     return (
         <Container>
             {props.children}

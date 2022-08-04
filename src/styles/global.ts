@@ -54,7 +54,6 @@ export const GlobalStyles = globalCss({
         '--green': '#0DE884',
         '--green-darker': '#35B87D',
         
-        '--background': 'rgba(10, 10, 20, 1)',
-        '--background-gradient': 'linear-gradient(90deg, rgba(10, 10, 20, 1) 0%, rgba(10, 10, 20, 1) 40%, rgba(10, 10, 20, 0.6) 100%)',
+        '--background': '#0A0A14',
     },
 });

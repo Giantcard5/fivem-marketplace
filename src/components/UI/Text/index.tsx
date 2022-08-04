@@ -8,7 +8,11 @@ import {
     TextProps 
 } from 'types/Text';
 
-const Text: React.FC<TextProps> = (props) => {
+import { 
+    ChildrenProps 
+} from 'types/Children';
+
+const Text: React.FC<TextProps & ChildrenProps> = (props) => {
     return (
         <Container type={props.type}>
             {props.children}

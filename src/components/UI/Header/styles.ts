@@ -1,6 +1,6 @@
 import { styled } from '@stitches/react';
 
-export const Container = styled('div', {
+export const Container = styled('header', {
     display: 'flex',
     flexDirection: 'column',
 });

@@ -2,7 +2,7 @@ import {
     isEnvBrowser 
 } from 'utils/misc';
 
-const resourceName = (window as any).GetParentResourceName ? (window as any).GetParentResourceName() : 'fivem-interface';
+const resourceName = (window as any).GetParentResourceName ? (window as any).GetParentResourceName() : 'fivem-marketplace';
 
 export async function fetchNui<T>(eventName: string, data?: any): Promise<T> {
     if (isEnvBrowser()) return undefined as any;

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useContext, Context } from 'react';
 
 import { 
     Container, 
@@ -23,6 +23,14 @@ import Inventory from 'components/Inventory';
 
 import PlusSVG from 'assets/icons/plus.svg';
 
+import { 
+    InventoryContext, InventoryProviderProps 
+} from 'providers/InventoryProvider';
+
+import { 
+    ItemContext, ItemProviderProps 
+} from 'providers/ItemProvider';
+
 import {
     fetchNui 
 } from 'utils/fetchNui';
@@ -32,123 +40,40 @@ import {
 } from 'hooks/useNuiEvent';
 
 import { 
-    ItemsProps,
     ItemProps
 } from 'types/Item';
 
 const Marketplace: React.FC = () => {
-    const [searchValue, setSearchValue] = useState<string>('');
-    const [filterValue, setFilterValue] = useState<string>('');
-    const [inventoryStatus, setInventoryStatus] = useState(false);
-    const [inventoryData, setInventoryData] = useState<ItemsProps>([]);
-    const [marketplaceData, setMarketplaceData] = useState<ItemsProps>();
+    const [search, setSearch] = useState<string>('');
+    const [filter, setFilter] = useState<string>('');
+    const [inventory, setInventory] = useState<ItemProps[]>([]);
+    const [marketplace, setMarketplace] = useState<ItemProps[]>([]);
 
-    const handleFilterValue = (value: string) => {
-        if (filterValue !== value) {
-            setFilterValue(value);
-        } else {
-            setFilterValue('');
-        };
+    const { 
+        visible: inventoryVisible, 
+        setVisible: setInventoryVisible 
+    } = useContext(InventoryContext as Context<InventoryProviderProps>);
+
+    const { 
+        setVisible: setItemVisible 
+    } = useContext(ItemContext as Context<ItemProviderProps>);
+
+    const handleFilter = (value: string) => value !== filter && setFilter(value);
+
+    const handleInventory = (value: boolean) => {
+        setInventoryVisible(value);
+        setItemVisible(value && false);
+
+        fetchNui<ItemProps[]>('getInventory').then(value => {
+            setInventory(value)
+        });
     };
 
-    const handleInventoryStatus = (value: boolean) => {
-        setInventoryStatus(value);
-
-        // fetchNui<ItemsProps>('getInventoryData').then(value => {
-            setInventoryData([
-                {
-                    "id": 1,
-                    "name": "Weapon",
-                    "type": "Weapon",
-                    "price": 100000
-                },
-                {
-                    "id": 2,
-                    "name": "Weapon",
-                    "type": "Weapon",
-                    "price": 100000
-                },
-                {
-                    "id": 3,
-                    "name": "Weapon",
-                    "type": "Weapon",
-                    "price": 200000
-                },
-                {
-                    "id": 4,
-                    "name": "Weapon",
-                    "type": "Weapon",
-                    "price": 200000
-                },
-                {
-                    "id": 5,
-                    "name": "Ammo",
-                    "type": "Ammo",
-                    "price": 100000
-                },
-                {
-                    "id": 6,
-                    "name": "Ammo",
-                    "type": "Ammo",
-                    "price": 100000
-                },
-                {
-                    "id": 7,
-                    "name": "Ammo",
-                    "type": "Ammo",
-                    "price": 200000
-                },
-                {
-                    "id": 8,
-                    "name": "Ammo",
-                    "type": "Ammo",
-                    "price": 200000
-                },
-                {
-                    "id": 9,
-                    "name": "Other",
-                    "type": "Other",
-                    "price": 100000
-                },
-                {
-                    "id": 10,
-                    "name": "Other",
-                    "type": "Other",
-                    "price": 100000
-                },
-                {
-                    "id": 11,
-                    "name": "Other",
-                    "type": "Other",
-                    "price": 200000
-                },
-                {
-                    "id": 12,
-                    "name": "Other",
-                    "type": "Other",
-                    "price": 200000
-                }
-            ])
-        // });
+    const purchaseItem = (value: ItemProps): any => {
+        fetchNui<ItemProps>('purchaseItem', value);
     };
 
-    useEffect(() => {
-        const keyHandler = (event: KeyboardEvent) => {
-            if (['Escape'].includes(event.code)) {
-                setInventoryStatus(false);
-            };
-        };
-
-        window.addEventListener('keydown', keyHandler);
-
-        return () => window.removeEventListener('keydown', keyHandler);
-    }, [inventoryStatus])
-
-    const handleMarketplaceValue = (value: ItemProps) => {
-        fetchNui<ItemProps>('handleMarketplaceValue', value);
-    }
-
-    useNuiEvent<ItemsProps>('getMarketplaceData', setMarketplaceData);
+    useNuiEvent<ItemProps[]>('getMarketplace', setMarketplace);
 
     return (
         <Container>
@@ -161,8 +86,9 @@ const Marketplace: React.FC = () => {
                         type='text' 
                         placeholder='Search by name' 
                         onChange={(event) => {
-                            setSearchValue(event.target.value);
+                            setSearch(event.target.value);
                         }}
+                        value={search}
                     />
                 </Header>
 
@@ -170,44 +96,40 @@ const Marketplace: React.FC = () => {
                     <Navigator>
                         <Block>
                             <Article>
-                                <Nav onClick={() => {handleFilterValue('Weapon')}}>
+                                <Nav onClick={() => {handleFilter('Weapon')}}>
                                     <Text type='navigator'>Weapons</Text>
                                 </Nav>
 
-                                <Nav onClick={() => {handleFilterValue('Ammo')}}>
+                                <Nav onClick={() => {handleFilter('Ammo')}}>
                                     <Text type='navigator'>Ammo</Text>
                                 </Nav>
 
-                                <Nav onClick={() => {handleFilterValue('Other')}}>
+                                <Nav onClick={() => {handleFilter('Other')}}>
                                     <Text type='navigator'>Others</Text>
                                 </Nav>
                             </Article>
 
-                            <Button type='image' onClick={() => {handleInventoryStatus(!inventoryStatus)}}>
-                                <Image 
-                                    type='plus' 
-                                    src={PlusSVG} 
-                                    alt='Search'
-                                />
+                            <Button type='image' onClick={() => {handleInventory(!inventoryVisible)}}>
+                                <Image type='plus' src={PlusSVG} alt='Search'/>
                             </Button>
                         </Block>
 
                         <Separator/>
                     </Navigator>
 
-                    {marketplaceData ? (
+                    {marketplace ? (
                         <Grid>
-                            {marketplaceData.filter((value) => {
-                                if (searchValue === '') {
-                                    if (filterValue === '') {
+                            {marketplace.filter((value) => {
+                                if (search === '') {
+                                    if (filter === '') {
                                         return value;
-                                    } else if (filterValue === value.type) {
+                                    } else if (filter === value.type) {
                                         return value;
                                     };
-                                } else if (value.name.toLowerCase().includes(searchValue.toLowerCase())) {
-                                    if (filterValue === '') {
+                                } else if (value.name.toLowerCase().includes(search.toLowerCase())) {
+                                    if (filter === '') {
                                         return value;
-                                    } else if (filterValue === value.type) {
+                                    } else if (filter === value.type) {
                                         return value;
                                     };
                                 };
@@ -221,9 +143,7 @@ const Marketplace: React.FC = () => {
                                     type={value.type} 
                                     price={value.price}
                                     text='Buy'
-                                    onClick={() => {
-                                        handleMarketplaceValue(value)
-                                    }}
+                                    onClick={purchaseItem(value)}
                                 />
                             ))}
                         </Grid>
@@ -233,7 +153,7 @@ const Marketplace: React.FC = () => {
                 </Section>
             </Content>
                 
-            {inventoryStatus && <Inventory data={inventoryData}/>}
+            {inventoryVisible && <Inventory data={inventory}/>}
         </Container>
     )
 }

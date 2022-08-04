@@ -8,7 +8,11 @@ import {
     ButtonProps 
 } from 'types/Button';
 
-const Button: React.FC<ButtonProps> = (props)=> {
+import { 
+    ChildrenProps 
+} from 'types/Children';
+
+const Button: React.FC<ButtonProps & ChildrenProps> = (props)=> {
     return (
         <Container type={props.type} onClick={props.onClick}>
             {props.children}

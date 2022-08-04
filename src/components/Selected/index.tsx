@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useContext, Context } from 'react';
 
 import { 
     Container,
@@ -11,6 +11,14 @@ import Input from 'components/UI/Input';
 import Button from 'components/UI/Button';
 
 import { 
+    ItemContext, ItemProviderProps 
+} from 'providers/ItemProvider';
+
+import { 
+    InventoryContext, InventoryProviderProps 
+} from 'providers/InventoryProvider';
+
+import { 
     fetchNui 
 } from 'utils/fetchNui';
 
@@ -19,18 +27,25 @@ import {
 } from 'types/Item';
 
 const Selected: React.FC<ItemProps> = (props) => {
-    const [itemPrice, setItemPrice] = useState<number>(0);
+    const [price, setPrice] = useState<number>();
 
-    const preventMinus = (event: any) => {
-        if (event.code === 'Minus') {
-            event.preventDefault();
-        };
-    };
+    const { 
+        setVisible: setItemVisible 
+    } = useContext(ItemContext as Context<ItemProviderProps>);
     
-    const handleItemValue = (value: ItemProps) => {
+    const { 
+        setVisible: setInventoryVisible 
+    } = useContext(InventoryContext as Context<InventoryProviderProps>);
+
+    const preventMinus = (event: any) => event.code === 'Minus' && event.preventDefault();
+    
+    const annouceItem = (value: ItemProps) => {
+        setItemVisible(false);
+        setInventoryVisible(false);
+
         if (value.price !== 0) {
-            fetchNui<ItemProps>('handleInventoryValue', value);
-        }
+            fetchNui<ItemProps>('annouceItem', value);
+        };
     };
 
     return (
@@ -41,8 +56,9 @@ const Selected: React.FC<ItemProps> = (props) => {
                     placeholder='Choose a price . . .'
                     onKeyPress={preventMinus}
                     onChange={(event) => {
-                        setItemPrice(parseInt(event.target.value))
+                        setPrice(parseInt(event.target.value))
                     }}
+                    value={price}
                 />
             </Image>
 
@@ -53,10 +69,10 @@ const Selected: React.FC<ItemProps> = (props) => {
             <Button 
                 type='item'
                 onClick={() => {
-                    handleItemValue({
+                    annouceItem({
                         id: props.id,
                         name: props.name,
-                        price: itemPrice,
+                        price: price,
                         type: props.type
                     })
                 }}

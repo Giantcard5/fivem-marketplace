@@ -6,7 +6,7 @@ export const Container = styled('div', {
     width: '40vw',
     height: '74vh',
 
-    margin: '7.25vmax 0vmax 0vmax 1vmax',
+    margin: '7.24vmax 0vmax 0vmax 1vmax',
 });
 
 export const Content = styled('div', {
@@ -21,23 +21,14 @@ export const Block = styled('div', {
     display: 'flex',
     alignItems: 'center',
 
-    height: '1.44vmax',
-});
-
-export const Footer = styled('footer', {
-    display: 'flex',
-    justifyContent: 'center',
-
-    margin: '1vmax 0vmax 0vmax 0vmax',
-
-    height: '4vh',
+    height: '1.36vmax',
 });
 
 export const Navigator = styled('nav', {
     display: 'flex',
     flexDirection: 'column',
 
-    margin: '0vmax 0vmax .4vmax 0vmax',
+    margin: '0vmax 0vmax .42vmax 0vmax',
 });
 
 export const Section = styled('section', {

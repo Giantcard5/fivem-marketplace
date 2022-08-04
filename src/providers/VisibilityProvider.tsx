@@ -6,6 +6,10 @@ import React, {
     useState 
 } from 'react';
 
+import { 
+    ChildrenProps 
+} from 'types/Children';
+
 import {
     useNuiEvent 
 } from 'hooks/useNuiEvent';
@@ -18,7 +22,7 @@ import {
     isEnvBrowser 
 } from 'utils/misc';
 
-const VisibilityCtx = createContext<VisibilityProviderValue | null>(null);
+const VisibilityContext = createContext<VisibilityProviderValue | null>(null);
 
 interface VisibilityProviderValue {
     setVisible: (
@@ -27,7 +31,7 @@ interface VisibilityProviderValue {
     visible: boolean;
 };
 
-export const VisibilityProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+export const VisibilityProvider: React.FC<ChildrenProps> = (props) => {
     const [visible, setVisible] = useState(false);
 
     useNuiEvent<boolean>('setVisible', setVisible);
@@ -48,17 +52,17 @@ export const VisibilityProvider: React.FC<{ children: React.ReactNode }> = ({ ch
     }, [visible])
 
     return (
-        <VisibilityCtx.Provider
+        <VisibilityContext.Provider
             value={{
                 visible,
                 setVisible
             }}
         >
             <div style={{ visibility: visible ? 'visible' : 'hidden', height: '100%'}}>
-                {children}
+                {props.children}
             </div>
-        </VisibilityCtx.Provider>
+        </VisibilityContext.Provider>
     )
 }
 
-export const useVisibility = () => useContext<VisibilityProviderValue>(VisibilityCtx as Context<VisibilityProviderValue>);
+export const useVisibility = () => useContext<VisibilityProviderValue>(VisibilityContext as Context<VisibilityProviderValue>);
