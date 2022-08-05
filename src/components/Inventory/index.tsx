@@ -19,7 +19,7 @@ import Separator from 'components/UI/Separator';
 import Selected from 'components/Selected';
 
 import { 
-    ItemContext, ItemProviderProps 
+    ItemContext 
 } from 'providers/ItemProvider';
 
 import { 
@@ -27,8 +27,13 @@ import {
 } from 'types/Item';
 
 import { 
+    ProviderProps 
+} from 'types/Provider';
+
+import { 
     InventoryProps 
 } from 'types/Inventory';
+
 
 const Inventory: React.FC<InventoryProps> = (props) => {
     const [search, setSearch] = useState<string>('');
@@ -38,9 +43,9 @@ const Inventory: React.FC<InventoryProps> = (props) => {
     const { 
         visible: itemVisible, 
         setVisible: setItemVisible 
-    } = useContext(ItemContext as Context<ItemProviderProps>);
+    } = useContext(ItemContext as Context<ProviderProps>);
 
-    const handleFilter = (value: string) => value !== filter && setFilter(value);
+    const handleFilter = (value: string) => value !== filter ? setFilter(value) : setFilter('');
 
     return (
         <Container>

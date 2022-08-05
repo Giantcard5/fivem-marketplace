@@ -1,4 +1,4 @@
-import React, { useState, useContext, Context } from 'react';
+import React, { useState, useContext, useCallback, useMemo, Context } from 'react';
 
 import { 
     Container, 
@@ -24,11 +24,11 @@ import Inventory from 'components/Inventory';
 import PlusSVG from 'assets/icons/plus.svg';
 
 import { 
-    InventoryContext, InventoryProviderProps 
+    InventoryContext 
 } from 'providers/InventoryProvider';
 
 import { 
-    ItemContext, ItemProviderProps 
+    ItemContext 
 } from 'providers/ItemProvider';
 
 import {
@@ -43,6 +43,10 @@ import {
     ItemProps
 } from 'types/Item';
 
+import { 
+    ProviderProps 
+} from 'types/Provider';
+
 const Marketplace: React.FC = () => {
     const [search, setSearch] = useState<string>('');
     const [filter, setFilter] = useState<string>('');
@@ -52,13 +56,13 @@ const Marketplace: React.FC = () => {
     const { 
         visible: inventoryVisible, 
         setVisible: setInventoryVisible 
-    } = useContext(InventoryContext as Context<InventoryProviderProps>);
+    } = useContext(InventoryContext as Context<ProviderProps>);
 
     const { 
         setVisible: setItemVisible 
-    } = useContext(ItemContext as Context<ItemProviderProps>);
+    } = useContext(ItemContext as Context<ProviderProps>);
 
-    const handleFilter = (value: string) => value !== filter && setFilter(value);
+    const handleFilter = (value: string) => value !== filter ? setFilter(value) : setFilter('');
 
     const handleInventory = (value: boolean) => {
         setInventoryVisible(value);
@@ -74,6 +78,8 @@ const Marketplace: React.FC = () => {
     };
 
     useNuiEvent<ItemProps[]>('getMarketplace', setMarketplace);
+
+    console.log('Render Matketplace')
 
     return (
         <Container>

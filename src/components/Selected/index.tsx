@@ -11,11 +11,11 @@ import Input from 'components/UI/Input';
 import Button from 'components/UI/Button';
 
 import { 
-    ItemContext, ItemProviderProps 
+    ItemContext 
 } from 'providers/ItemProvider';
 
 import { 
-    InventoryContext, InventoryProviderProps 
+    InventoryContext 
 } from 'providers/InventoryProvider';
 
 import { 
@@ -26,16 +26,20 @@ import {
     ItemProps 
 } from 'types/Item';
 
+import { 
+    ProviderProps 
+} from 'types/Provider';
+
 const Selected: React.FC<ItemProps> = (props) => {
     const [price, setPrice] = useState<number>();
 
     const { 
         setVisible: setItemVisible 
-    } = useContext(ItemContext as Context<ItemProviderProps>);
+    } = useContext(ItemContext as Context<ProviderProps>);
     
     const { 
         setVisible: setInventoryVisible 
-    } = useContext(InventoryContext as Context<InventoryProviderProps>);
+    } = useContext(InventoryContext as Context<ProviderProps>);
 
     const preventMinus = (event: any) => event.code === 'Minus' && event.preventDefault();
     

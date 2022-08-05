@@ -8,14 +8,11 @@ import {
     ChildrenProps 
 } from 'types/Children';
 
-export type InventoryProviderProps = {
-    setVisible: (
-        visible: boolean
-    ) => void;
-    visible: boolean;
-};
+import { 
+    ProviderProps 
+} from 'types/Provider';
 
-export const InventoryContext = createContext<InventoryProviderProps | null>(null);
+export const InventoryContext = createContext<ProviderProps | null>(null);
 
 export const InventoryProvider: React.FC<ChildrenProps> = (props) => {
     const [visible, setVisible] = useState<boolean>(false);
