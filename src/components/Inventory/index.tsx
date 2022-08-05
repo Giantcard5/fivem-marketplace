@@ -1,4 +1,4 @@
-import React, { useState, useContext, Context } from 'react';
+import React, { useState } from 'react';
 
 import { 
     Container,
@@ -19,31 +19,23 @@ import Separator from 'components/UI/Separator';
 import Selected from 'components/Selected';
 
 import { 
-    ItemContext 
-} from 'providers/ItemProvider';
+    useItem 
+} from 'hooks/useItem';
 
 import { 
     ItemProps
 } from 'types/Item';
 
 import { 
-    ProviderProps 
-} from 'types/Provider';
-
-import { 
     InventoryProps 
 } from 'types/Inventory';
-
 
 const Inventory: React.FC<InventoryProps> = (props) => {
     const [search, setSearch] = useState<string>('');
     const [filter, setFilter] = useState<string>('');
     const [item, setItem] = useState<ItemProps>();
 
-    const { 
-        visible: itemVisible, 
-        setVisible: setItemVisible 
-    } = useContext(ItemContext as Context<ProviderProps>);
+    const { visible: itemVisible, setVisible: setItemVisible } = useItem();
 
     const handleFilter = (value: string) => value !== filter ? setFilter(value) : setFilter('');
 

@@ -1,10 +1,4 @@
-import React, { 
-    Context, 
-    createContext, 
-    useContext, 
-    useEffect, 
-    useState 
-} from 'react';
+import React, { useEffect, useState, createContext } from 'react';
 
 import { 
     ChildrenProps 
@@ -26,10 +20,10 @@ import {
     isEnvBrowser 
 } from 'utils/misc';
 
-const VisibilityContext = createContext<ProviderProps | null>(null);
+export const VisibilityContext = createContext<ProviderProps | null>(null);
 
 export const VisibilityProvider: React.FC<ChildrenProps> = (props) => {
-    const [visible, setVisible] = useState(false);
+    const [visible, setVisible] = useState<boolean>(false);
 
     useNuiEvent<boolean>('setVisible', setVisible);
 
@@ -61,5 +55,3 @@ export const VisibilityProvider: React.FC<ChildrenProps> = (props) => {
         </VisibilityContext.Provider>
     )
 }
-
-export const useVisibility = () => useContext<ProviderProps>(VisibilityContext as Context<ProviderProps>);

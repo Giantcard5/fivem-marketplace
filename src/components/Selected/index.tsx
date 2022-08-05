@@ -1,4 +1,4 @@
-import React, { useState, useContext, Context } from 'react';
+import React, { useState } from 'react';
 
 import { 
     Container,
@@ -11,12 +11,12 @@ import Input from 'components/UI/Input';
 import Button from 'components/UI/Button';
 
 import { 
-    ItemContext 
-} from 'providers/ItemProvider';
+    useInventory 
+} from 'hooks/useInventory';
 
 import { 
-    InventoryContext 
-} from 'providers/InventoryProvider';
+    useItem 
+} from 'hooks/useItem';
 
 import { 
     fetchNui 
@@ -26,20 +26,11 @@ import {
     ItemProps 
 } from 'types/Item';
 
-import { 
-    ProviderProps 
-} from 'types/Provider';
-
 const Selected: React.FC<ItemProps> = (props) => {
     const [price, setPrice] = useState<number>();
 
-    const { 
-        setVisible: setItemVisible 
-    } = useContext(ItemContext as Context<ProviderProps>);
-    
-    const { 
-        setVisible: setInventoryVisible 
-    } = useContext(InventoryContext as Context<ProviderProps>);
+    const { setVisible: setInventoryVisible } = useInventory();
+    const { setVisible: setItemVisible } = useItem();
 
     const preventMinus = (event: any) => event.code === 'Minus' && event.preventDefault();
     

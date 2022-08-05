@@ -1,15 +1,9 @@
+import { useEffect, useRef, MutableRefObject } from 'react';
+
 import { 
-    MutableRefObject, 
-    useEffect, 
-    useRef 
-} from 'react';
-
-interface NuiMessageData<T = unknown> {
-    action: string;
-    data: T;
-};
-
-type NuiHandlerSignature<T> = (data: T) => void;
+    NuiHandlerSignature, 
+    NuiMessageData 
+} from 'types/Message';
 
 export const useNuiEvent = <T = any>(action: string, handler: (data: T) => void) => {
     const savedHandler: MutableRefObject<NuiHandlerSignature<T>> = useRef(() => {});
