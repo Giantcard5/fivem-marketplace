@@ -1,3 +1,3 @@
 export type NavProps = {
-    onClick?: () => {} | void;
+    onClick?: () => void;
 };

@@ -4,5 +4,5 @@ export type ItemProps = {
     type: string,
     price?: number,
     text?: string;
-    onClick?: () => {} | void;
+    onClick?: () => void;
 };

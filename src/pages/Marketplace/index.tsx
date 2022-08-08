@@ -14,6 +14,7 @@ import Text from 'components/UI/Text';
 import Item from 'components/UI/Item';
 import Grid from 'components/UI/Grid';
 import Image from 'components/UI/Image';
+import Modal from 'components/UI/Modal';
 import Search from 'components/UI/Search';
 import Button from 'components/UI/Button';
 import Header from 'components/UI/Header';
@@ -31,13 +32,17 @@ import {
     useItem 
 } from 'hooks/useItem';
 
+import { 
+    useNuiEvent 
+} from 'hooks/useNuiEvent';
+
 import {
     fetchNui 
 } from 'utils/fetchNui';
 
 import { 
-    useNuiEvent 
-} from 'hooks/useNuiEvent';
+    formatter 
+} from 'utils/formatter';
 
 import { 
     ItemProps
@@ -46,6 +51,8 @@ import {
 const Marketplace: React.FC = () => {
     const [search, setSearch] = useState<string>('');
     const [filter, setFilter] = useState<string>('');
+    const [modal, setModal] = useState<boolean>(false);
+    const [item, setItem] = useState<ItemProps>({} as ItemProps);
     const [inventory, setInventory] = useState<ItemProps[]>([]);
     const [marketplace, setMarketplace] = useState<ItemProps[]>([]);
 
@@ -63,7 +70,9 @@ const Marketplace: React.FC = () => {
         });
     };
 
-    const purchaseItem = (value: ItemProps): any => {
+    const purchaseItem = (value: ItemProps): void => {
+        setModal(!modal);
+
         fetchNui<ItemProps>('purchaseItem', value);
     };
 
@@ -131,13 +140,16 @@ const Marketplace: React.FC = () => {
                                 return false;
                             }).map((value, key) => (
                                 <Item 
+                                    text='Buy'
+
                                     key={key}
+                                    
                                     id={value.id}
                                     name={value.name} 
                                     type={value.type} 
                                     price={value.price}
-                                    text='Buy'
-                                    onClick={purchaseItem(value)}
+
+                                    onClick={() => {setItem(value); setModal(!modal)}}
                                 />
                             ))}
                         </Grid>
@@ -147,7 +159,20 @@ const Marketplace: React.FC = () => {
                 </Section>
             </Content>
                 
-            {inventoryVisible && <Inventory data={inventory}/>}
+            {inventoryVisible && 
+                <Inventory 
+                    data={inventory}
+                />
+            }
+
+            {modal && 
+                <Modal
+                    title={'Buy ' + item.name}
+                    subtitle={'You will buy this item for the value of: ' + formatter(item.price)}
+                    handleAccept={() => purchaseItem(item)}
+                    handleDecline={() => setModal(!modal)}
+                />
+            }
         </Container>
     )
 }

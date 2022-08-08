@@ -46,6 +46,16 @@ export const Container = styled('button', {
                 width: '10%',
                 height: '100%',
             },
+            modal: {
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+
+                width: '4vmax',
+                height: '2vmax',
+
+                margin: '0vmax 2vmax',
+            }
         },
     },
 });

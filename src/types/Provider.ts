@@ -1,6 +1,4 @@
 export type ProviderProps = {
-    setVisible: (
-        visible: boolean
-    ) => void;
+    setVisible: (visible: boolean) => void;
     visible: boolean;
 };

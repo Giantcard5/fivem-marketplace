@@ -1,4 +1,4 @@
 export type ButtonProps = {
-    type: 'image' | 'item' | 'search' | 'slot';
-    onClick?: () => {} | void;
-};
+    type: 'image' | 'item' | 'search' | 'slot' | 'modal';
+    onClick?: () => void;
+}

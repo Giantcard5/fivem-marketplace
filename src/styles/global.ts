@@ -55,5 +55,6 @@ export const GlobalStyles = globalCss({
         '--green-darker': '#35B87D',
         
         '--background': '#0A0A14',
+        '--background-modal': '#0A0A14E6',
     },
 });

@@ -40,7 +40,7 @@ export const VisibilityProvider: React.FC<ChildrenProps> = (props) => {
         window.addEventListener('keydown', keyHandler);
 
         return () => window.removeEventListener('keydown', keyHandler);
-    }, [visible])
+    }, [visible]);
 
     return (
         <VisibilityContext.Provider
@@ -53,5 +53,5 @@ export const VisibilityProvider: React.FC<ChildrenProps> = (props) => {
                 {props.children}
             </div>
         </VisibilityContext.Provider>
-    )
-}
+    );
+};

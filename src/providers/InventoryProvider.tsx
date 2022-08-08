@@ -25,7 +25,7 @@ export const InventoryProvider: React.FC<ChildrenProps> = (props) => {
         window.addEventListener('keydown', keyHandler);
 
         return () => window.removeEventListener('keydown', keyHandler);
-    }, [visible])
+    }, [visible]);
 
     return (
         <InventoryContext.Provider value={{ visible, setVisible }}>

@@ -99,6 +99,39 @@ export const Container = styled('span', {
 
                 color: 'var(--white)',
             },
+            modalTitle: {
+                fontSize: '1.2vmax',
+                fontWeight: '600',
+
+                textAlign: 'center',
+                textTransform: 'uppercase',
+
+                color: 'var(--green)',
+
+                filter: 'drop-shadow(0vmax 0vmax .6vmax rgb(13, 232, 132, 0.4))',
+            },
+            modalSubtitle: {
+                padding: '.2vmax',
+                
+                fontSize: '.6vmax',
+                fontWeight: '600',
+
+                textTransform: 'uppercase',
+
+                color: 'var(--white)',
+
+                filter: 'drop-shadow(0vmax 0vmax .2vmax rgba(235, 235, 235, 0.4))',
+            },
+            modalButtons: {
+                fontSize: '.7vmax',
+                fontWeight: '600',
+
+                textTransform: 'uppercase',
+
+                color: 'var(--white)',
+
+                filter: 'drop-shadow(0vmax 0vmax .2vmax rgba(235, 235, 235, 0.4))',
+            }
         },
     },
 });
