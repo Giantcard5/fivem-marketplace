@@ -99,15 +99,15 @@ const Marketplace: React.FC = () => {
                     <Navigator>
                         <Block>
                             <Article>
-                                <Nav onClick={() => {handleFilter('Weapon')}}>
+                                <Nav onClick={() => handleFilter('Weapon')}>
                                     <Text type='navigator'>Weapons</Text>
                                 </Nav>
 
-                                <Nav onClick={() => {handleFilter('Ammo')}}>
+                                <Nav onClick={() => handleFilter('Ammo')}>
                                     <Text type='navigator'>Ammo</Text>
                                 </Nav>
 
-                                <Nav onClick={() => {handleFilter('Other')}}>
+                                <Nav onClick={() => handleFilter('Other')}>
                                     <Text type='navigator'>Others</Text>
                                 </Nav>
                             </Article>
