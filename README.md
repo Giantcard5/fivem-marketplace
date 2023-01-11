@@ -26,6 +26,6 @@ yarn build
 ```
 
 ## Preview
-![Marketplace Preview](https://media.discordapp.net/attachments/867877257586278420/1010306699829198878/unknown.png?width=1333&height=701 "Marketplace Preview")
-![Marketplace Preview](https://media.discordapp.net/attachments/867877257586278420/1010306818091778068/unknown.png?width=1333&height=701 "Marketplace Preview")
-![Marketplace Preview](https://media.discordapp.net/attachments/867877257586278420/1010304126514634792/unknown.png?width=1332&height=701 "Marketplace Preview")
+![Marketplace Preview](https://media.discordapp.net/attachments/894609191870812262/1062764130878095430/unknown.png?width=1246&height=655 "Marketplace Preview")
+![Marketplace Preview](https://media.discordapp.net/attachments/894609191870812262/1062764141594558546/unknown.png?width=1246&height=655 "Marketplace Preview")
+![Marketplace Preview](https://media.discordapp.net/attachments/894609191870812262/1062764148007645194/unknown.png?width=1244&height=654 "Marketplace Preview")
