@@ -11,7 +11,7 @@ import {
 export const InventoryContext = createContext<ProviderProps | null>(null);
 
 export const InventoryProvider: React.FC<ChildrenProps> = (props) => {
-    const [visible, setVisible] = useState<boolean>(false);
+    const [visible, setVisible] = useState<boolean>(true);
 
     useEffect(() => {
         if (!visible) return;

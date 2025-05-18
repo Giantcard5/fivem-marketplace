@@ -76,6 +76,7 @@ const Marketplace: React.FC = () => {
         fetchNui<ItemProps>('purchaseItem', value);
     };
 
+    useNuiEvent<ItemProps[]>('getInventory', setInventory);
     useNuiEvent<ItemProps[]>('getMarketplace', setMarketplace);
 
     return (

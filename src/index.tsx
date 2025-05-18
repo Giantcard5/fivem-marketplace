@@ -112,6 +112,31 @@ debugData([
         ]
     }
 ]);
+debugData([
+    {
+        action: 'getInventory',
+        data: [
+            {
+                "id": 1,
+                "name": "Weapon",
+                "type": "Weapon",
+                "price": 100000
+            },
+            {
+                "id": 2,
+                "name": "Weapon",
+                "type": "Weapon",
+                "price": 100000
+            },
+            {
+                "id": 3,
+                "name": "Weapon",
+                "type": "Weapon",
+                "price": 200000
+            },
+        ]
+    }
+]);
 
 root.render(      
     <React.StrictMode>
